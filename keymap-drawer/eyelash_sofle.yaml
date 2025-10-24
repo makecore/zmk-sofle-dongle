@@ -64,7 +64,7 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - '2'
   - $$mdi:apple-keyboard-caps$$
-  - RIGHT CTRL
+  - $$mdi:apple-keyboard-control$$
   layer1:
   - {t: '`', s: '~'}
   - F1
