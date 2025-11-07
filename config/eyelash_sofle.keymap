@@ -40,36 +40,24 @@
   acceleration-exponent = <1>;
 };
 
-&soft_off { hold-time-ms = <2000>; }
+&soft_off {
+  hold-time-ms = <2000>;
+};
 
-/ {
-  scroll_encoder: scroll_encoder {
-    compatible = "zmk,behavior-sensor-rotate";
-    #sensor-binding-cells = <0>;
-    bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-    tap-ms = <30>;
+&behaviors {
+  // 왼쪽 Shift: 일반 Shift + 더블탭 CapsLock 토글
+  td_lshift_caps: td_lshift_caps {
+    compatible = "zmk,behavior-tap-dance";
+    label = "TD_LSHIFT_CAPS";
+    tapping-term-ms = <250>;
+    bindings = <&kp LSHFT>, <&kp CAPSLOCK>;
+    hold-trigger-on-release;
+    hold-bindings = <&kp LSHFT>;
   };
+};
 
-  /* ---------------------------- */
-  /*  Custom Behavior Definitions */
-  /* ---------------------------- */
-  behaviors {
-    // 왼쪽 Shift: 일반 Shift + 더블탭 시 CapsLock 토글
-    td_lshift_caps: td_lshift_caps {
-      compatible = "zmk,behavior-tap-dance";
-      label = "TD_LSHIFT_CAPS";
-      tapping-term-ms = <250>; // 250ms 내에 2번 탭 시 CapsLock
-      bindings = <&kp LSHFT>, <&kp CAPSLOCK>;
-      hold-trigger-on-release;
-      hold-bindings = <&kp LSHFT>;
-    };
-  };
-
-  /* ---------------------------- */
-  /*         Keymap Layers        */
-  /* ---------------------------- */
-  keymap {
-    compatible = "zmk,keymap";
+&keymap {
+  compatible = "zmk,keymap";
 
     layer0 {
       bindings = <
